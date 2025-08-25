@@ -50,6 +50,7 @@ jobs:
       - uses: actions/checkout@v5
       - name: Push result report
         run: |
+          git log
           git push --tags
           git push -f
   release:
@@ -62,10 +63,11 @@ jobs:
         with:
           script: |
             try {
+              const title = format( 'LangChain4J CDI {0}', ${{ github.event.inputs.version }})
               const response = await github.rest.repos.createRelease({
                     draft: false,
                     generate_release_notes: true,
-                    name: "LangChain4J CDI ${{ github.event.inputs.version }}",
+                    name: title,
                     owner: context.repo.owner,
                     prerelease: false,
                     repo: context.repo.repo,
