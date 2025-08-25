@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v5
-        run: |
+      - run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
 
