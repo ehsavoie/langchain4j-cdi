@@ -19,9 +19,6 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v5
-      - run: |
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
 
       - name: Set up JDK 21
         uses: actions/setup-java@v5
@@ -47,6 +44,13 @@ jobs:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      - uses: actions/checkout@v5
+      - name: Push result report
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-username@users.noreply.github.com'
+          git push
+          git push --tags
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
