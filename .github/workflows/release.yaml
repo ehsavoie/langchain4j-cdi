@@ -63,7 +63,16 @@ jobs:
         with:
           script: |
             try {
-              const title = format( 'LangChain4J CDI {0}', ${{ github.event.inputs.version }})
+             const title = format( 'LangChain4J CDI {0}', ${{ github.event.inputs.version }});
+             const jsonText = `{
+                "draft": "false",
+                "generate_release_notes": "true",
+                "name": title,
+                "owner": context.repo.owner,
+                "prerelease": "false",
+                "repo": context.repo.repo,
+                "tag_name": ${{ steps.get-version.inputs.version }}
+              }`;
               const response = await github.rest.repos.createRelease({
                     draft: false,
                     generate_release_notes: true,
