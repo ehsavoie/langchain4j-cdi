@@ -31,7 +31,7 @@ jobs:
           server-password: MAVEN_CENTRAL_PASSWORD
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
-        run: |
+      - run: |
           git config --global user.name 'Langchain4J CDI'
           git config --global user.email 'langchain4j.cdi@gmail.com'
 
