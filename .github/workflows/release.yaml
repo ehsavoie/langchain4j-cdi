@@ -65,7 +65,7 @@ jobs:
               const response = await github.rest.repos.createRelease({
                     draft: false,
                     generate_release_notes: true,
-                    name: LangChain4J CDI ${{ github.event.inputs.version }},
+                    name: "LangChain4J CDI ${{ github.event.inputs.version }}",
                     owner: context.repo.owner,
                     prerelease: false,
                     repo: context.repo.repo,
