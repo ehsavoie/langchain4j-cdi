@@ -40,8 +40,8 @@ jobs:
 
       - name: Run a build of the code base before release
         run: mvn --batch-mode --no-transfer-progress clean install
+
       - name: Install gpg secret key
-        id: install-secret-key
         run: |
           # Install gpg secret key
           cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import
