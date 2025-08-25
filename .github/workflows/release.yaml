@@ -40,9 +40,16 @@ jobs:
 
       - name: Run a build of the code base before release
         run: mvn --batch-mode --no-transfer-progress clean install
-
+      - name: Install gpg secret key
+        id: install-secret-key
+        run: |
+          # Install gpg secret key
+          cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import
+          # Verify gpg secret key
+          gpg --list-secret-keys --keyid-format LONG
+  
       - name: Release Prepare
-        run: mvn --batch-mode release:prepare -Psign -DreleaseVersion=${{ github.event.inputs.version }} -DdevelopmentVersion=${{ github.event.inputs.nextVersion }}-SNAPSHOT -DdryRun
+        run: mvn --batch-mode release:prepare -Psign -DreleaseVersion=${{ github.event.inputs.version }} -DdevelopmentVersion=${{ github.event.inputs.nextVersion }}-SNAPSHOT -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -DdryRun
 
       - name: Release Perform
         run: |
@@ -50,7 +57,6 @@ jobs:
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
