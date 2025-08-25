@@ -14,11 +14,11 @@ jobs:
   deploy:
     name: Release on MavenCentral
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Git checkout
         uses: actions/checkout@v5
-        permissions:
-          contents: [read, write]
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
