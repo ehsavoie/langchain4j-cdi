@@ -342,7 +342,8 @@
                     <version>3.1.1</version>
                     <configuration>
                         <tagNameFormat>langchain4j-cdi-@{project.version}</tagNameFormat>
-                        <pushChanges>true</pushChanges>
+                        <localCheckout>true</localCheckout>
+                        <pushChanges>false</pushChanges>
                         <preparationGoals>clean install</preparationGoals>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <releaseProfiles>sign</releaseProfiles>
