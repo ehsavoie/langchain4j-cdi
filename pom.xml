@@ -344,10 +344,10 @@
                         <tagNameFormat>langchain4j-cdi-@{project.version}</tagNameFormat>
                         <localCheckout>true</localCheckout>
                         <pushChanges>false</pushChanges>
+                        <remoteTagging>false</remoteTagging>
                         <preparationGoals>clean install</preparationGoals>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <releaseProfiles>sign</releaseProfiles>
-                        <signTag>true</signTag>
                     </configuration>
                 </plugin>
                 <plugin>
