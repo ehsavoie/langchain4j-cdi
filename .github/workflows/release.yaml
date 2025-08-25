@@ -31,7 +31,10 @@ jobs:
           server-password: MAVEN_CENTRAL_PASSWORD
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
-  
+        run: |
+          git config --global user.name 'Langchain4J CDI'
+          git config --global user.email 'langchain4j.cdi@gmail.com'
+
       - name: Release Prepare
         run: mvn --batch-mode release:prepare -e -DreleaseVersion=${{ github.event.inputs.version }} -DdevelopmentVersion=${{ github.event.inputs.nextVersion }}-SNAPSHOT
         env:
@@ -47,8 +50,6 @@ jobs:
       - uses: actions/checkout@v5
       - name: Push result report
         run: |
-          git config --global user.name 'Langchain4J CDI'
-          git config --global user.email 'langchain4j.cdi@gmail.com'
           git push
           git push --tags
   release:
