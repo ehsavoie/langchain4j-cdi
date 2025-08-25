@@ -34,7 +34,7 @@ jobs:
         run: mvn --batch-mode --no-transfer-progress clean install
   
       - name: Release Prepare
-        run: mvn --batch-mode release:prepare -Psign -DreleaseVersion=${{ github.event.inputs.version }} -DdevelopmentVersion=${{ github.event.inputs.nextVersion }}-SNAPSHOT -DdryRun
+        run: mvn --batch-mode release:prepare -Psign -DreleaseVersion=${{ github.event.inputs.version }} -DdevelopmentVersion=${{ github.event.inputs.nextVersion }}-SNAPSHOT
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
