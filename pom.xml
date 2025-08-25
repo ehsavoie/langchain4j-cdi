@@ -43,8 +43,8 @@
     </modules>
 
     <scm>
-        <connection>scm:git:git://github.com/langchain4j/langchain4j-cdi.git</connection>
-        <developerConnection>scm:git:git@github.com:langchain4j/langchain4j-cdi.git</developerConnection>
+        <connection>scm:git:git://github.com/ehsavoie/langchain4j-cdi.git</connection>
+        <developerConnection>scm:git:git@github.com:ehsavoie/langchain4j-cdi.git</developerConnection>
         <url>https://github.com/langchain4j/langchain4j-cdi</url>
     </scm>
 
